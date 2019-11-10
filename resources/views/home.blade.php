@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    You are logged in as User!
+                    @component('components.who')
+                        
+                    @endcomponent
+
                 </div>
             </div>
         </div>

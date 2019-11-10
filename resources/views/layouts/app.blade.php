@@ -54,17 +54,36 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                                @if (Auth::guard('admin')->check())
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('admin.logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+    
+                                        <form id="logout-form" action="{{ route('admin.logout') }}"  style="display: none;">
+                                            
+                                        </form>
+                                    </div>
+                                @endif
+
+                                @if (Auth::guard('web')->check())
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('user.logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+    
+                                        <form id="logout-form" action="{{ route('user.logout') }}"  style="display: none;">
+                                            
+                                        </form>
+                                    </div>
+                                @endif
+                               
+                                
                             </li>
                         @endguest
                     </ul>
